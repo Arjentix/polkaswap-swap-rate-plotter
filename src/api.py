@@ -49,7 +49,7 @@ class Api:
         while hasNextPage:
             print(f'Receiving currencies page #{i}')
             response = requests.post(
-                url='http://api.subquery.network/sq/sora-xor/sora',
+                url='https://api.subquery.network/sq/sora-xor/sora',
                 json=body,
             ).json()
 
