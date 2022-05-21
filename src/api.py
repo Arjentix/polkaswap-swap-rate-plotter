@@ -65,6 +65,7 @@ class Api:
         self._server = Server("wss://ws.mof.sora.org")
 
     async def ws_connect(self):
+        print("Connecting to Sora WebSocket")
         await self._server.ws_connect()
 
     async def ws_close(self):
