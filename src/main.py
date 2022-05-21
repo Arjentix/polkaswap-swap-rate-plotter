@@ -1,6 +1,7 @@
 import asyncio
-from concurrent.futures import ProcessPoolExecutor
 import matplotlib.pyplot as plt
+from labellines import labelLines
+
 from api import Api
 
 # From polkaswap.io
@@ -28,8 +29,12 @@ X_VALUES = [
 ]
 
 async def main():
+    fig = plt.figure()
+    ax = fig.subplots()
+
     all_y_values = []
     api = Api()
+    xlim, ylim = plt.xlim(), plt.ylim()
     try:
         await api.ws_connect()
 
@@ -42,13 +47,17 @@ async def main():
         for asset, currency in asset_currencies.items():
             print(f'{asset.upper()}: ${currency}')
 
-        xlim, ylim = plt.xlim(), plt.ylim()
-        loop = asyncio.get_running_loop()
-        tasks = [draw_pair(pair, xlim, ylim, api, asset_currencies) for pair in SWAP_PAIRS]
+        tasks = [draw_pair(ax, pair, xlim, ylim, api, asset_currencies) for pair in SWAP_PAIRS]
         for y_values in await asyncio.gather(*tasks):
             all_y_values.extend(y_values)
     finally:
         await api.ws_close()
+
+    # Drawing labels
+    for x in X_VALUES:
+        lines_num = len(SWAP_PAIRS)
+        x_min = max(min(X_VALUES), x - lines_num * 10)
+        labelLines(xvals=(x_min, x), align=False, color="k")
 
     plt.xlabel("To swap, $")
     plt.xticks(X_VALUES)
@@ -57,7 +66,7 @@ async def main():
     plt.legend(loc='right')
     plt.show()
 
-async def draw_pair(pair, xlim, ylim, api, asset_currencies):
+async def draw_pair(ax, pair, xlim, ylim, api, asset_currencies):
     y_values = []
     asset_from = ASSET_ADDRESSES[pair[0]]
     asset_to = ASSET_ADDRESSES[pair[1]]
@@ -69,12 +78,12 @@ async def draw_pair(pair, xlim, ylim, api, asset_currencies):
         swapped_amount = swapped_amount_in_crypto * asset_currencies[pair[1]]
         y_values.append(swapped_amount)
         # Drawing dotted line
-        plt.plot(
+        ax.plot(
             [amount, amount, xlim[0]],
             [ylim[0], swapped_amount, swapped_amount],
             linestyle='--'
         )
-    plt.plot(X_VALUES, y_values, label=f'{pair[0].upper()}―{pair[1].upper()}')
+    ax.plot(X_VALUES, y_values, label=f'{pair[0].upper()}―{pair[1].upper()}')
     return y_values
 
 if __name__ == '__main__':
