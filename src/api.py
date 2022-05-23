@@ -65,10 +65,11 @@ class Api:
         self._server = Server("wss://ws.mof.sora.org")
 
     async def ws_connect(self):
-        print("Connecting to Sora WebSocket")
+        print("Connecting to Sora WebSocket\n")
         await self._server.ws_connect()
 
     async def ws_close(self):
+        print("Disconnecting from Sora WebSocket\n")
         await self._server.close()
 
     def get_usd_currency(self, address):

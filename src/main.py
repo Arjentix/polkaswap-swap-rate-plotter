@@ -46,6 +46,7 @@ async def main():
         print('Currencies:')
         for asset, currency in asset_currencies.items():
             print(f'{asset.upper()}: ${currency}')
+        print()
 
         tasks = [draw_pair(ax, pair, xlim, ylim, api, asset_currencies) for pair in SWAP_PAIRS]
         for y_values in await asyncio.gather(*tasks):
