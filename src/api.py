@@ -55,21 +55,21 @@ class Api:
 
             pools = response['data']['poolXYKEntities']['nodes'][0]['pools']
             for node in pools['nodes']:
-                self._currencies[node["targetAssetId"]] = float(node['priceUSD'])
+                self._currencies[node['targetAssetId']] = float(node['priceUSD'])
 
             pageInfo = pools['pageInfo']
             hasNextPage = pageInfo['hasNextPage']
             body['variables']['poolsAfter'] = pageInfo['endCursor']
             i += 1
         print()
-        self._server = Server("wss://ws.mof.sora.org")
+        self._server = Server('wss://ws.mof.sora.org')
 
     async def ws_connect(self):
-        print("Connecting to Sora WebSocket\n")
+        print('Connecting to Sora WebSocket\n')
         await self._server.ws_connect()
 
     async def ws_close(self):
-        print("Disconnecting from Sora WebSocket\n")
+        print('Disconnecting from Sora WebSocket\n')
         await self._server.close()
 
     def get_usd_currency(self, address):

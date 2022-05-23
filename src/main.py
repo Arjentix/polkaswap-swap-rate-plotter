@@ -30,6 +30,7 @@ X_VALUES = [
 
 async def main():
     fig = plt.figure()
+    fig.canvas.manager.set_window_title('Swap rate')
     ax = fig.subplots()
 
     all_y_values = []
@@ -58,11 +59,11 @@ async def main():
     for x in X_VALUES:
         lines_num = len(SWAP_PAIRS)
         x_min = max(min(X_VALUES), x - lines_num * 10)
-        labelLines(xvals=(x_min, x), align=False, color="k")
+        labelLines(xvals=(x_min, x), align=False, color='k')
 
-    plt.xlabel("To swap, $")
+    plt.xlabel('To swap, $')
     plt.xticks(X_VALUES)
-    plt.ylabel("To receive, $")
+    plt.ylabel('To receive, $')
     plt.yticks(all_y_values)
     plt.legend(loc='right')
     plt.show()
