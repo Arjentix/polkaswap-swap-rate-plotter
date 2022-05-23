@@ -1,3 +1,5 @@
 matplotlib == 3.5.1
 requests == 2.27.1
 matplotlib-label-lines == 0.5.1
+# Using my non-oficial repo until fix PR (https://github.com/emlove/jsonrpc-websocket/pull/12) is merged
+git+https://github.com/Arjentix/jsonrpc-websocket@fix_unclosed_client_session#egg=jsonrpc_websocket
