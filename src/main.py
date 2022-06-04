@@ -12,15 +12,16 @@ ASSET_ADDRESSES = {
     'dai': '0x0200060000000000000000000000000000000000000000000000000000000000',
     'eth': '0x0200070000000000000000000000000000000000000000000000000000000000',
     'xstusd': '0x0200080000000000000000000000000000000000000000000000000000000000',
-    'noir': '0x0044aee0776cfb826434af8ef0f8e2c7e9e6644cfda0ae0f02c471b1eebc2483'
+    'noir': '0x0044aee0776cfb826434af8ef0f8e2c7e9e6644cfda0ae0f02c471b1eebc2483',
+    'usdc': '0x00ef6658f79d8b560f77b7b20a5d7822f5bc22539c7b4056128258e5829da517',
 }
 
 SWAP_PAIRS = [
-    ['xor', 'eth'], ['xor', 'dai'],
-    ['val', 'eth'], ['val', 'dai'],
-    ['xstusd', 'eth'], ['xstusd', 'dai'],
-    ['pswap', 'eth'], ['pswap', 'dai'],
-    ['noir', 'eth'], ['noir', 'dai'],
+    ['xor', 'eth'], ['xor', 'dai'], ['xor', 'usdc'],
+    ['val', 'eth'], ['val', 'dai'], ['val', 'usdc'],
+    ['xstusd', 'eth'], ['xstusd', 'dai'], ['xstusd', 'usdc'],
+    ['pswap', 'eth'], ['pswap', 'dai'], ['pswap', 'usdc'],
+    ['noir', 'eth'], ['noir', 'dai'], ['noir', 'usdc'],
 ]
 
 # Values on x axis in $
