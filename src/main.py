@@ -14,6 +14,8 @@ ASSET_ADDRESSES = {
     'xstusd': '0x0200080000000000000000000000000000000000000000000000000000000000',
     'noir': '0x0044aee0776cfb826434af8ef0f8e2c7e9e6644cfda0ae0f02c471b1eebc2483',
     'usdc': '0x00ef6658f79d8b560f77b7b20a5d7822f5bc22539c7b4056128258e5829da517',
+    'ceres': '0x008bcfd2387d3fc453333557eecb0efe59fcba128769b2feefdd306e98e66440',
+    'deo': '0x00f2f4fda40a4bf1fc3769d156fa695532eec31e265d75068524462c0b80f674',
 }
 
 SWAP_PAIRS = [
@@ -22,6 +24,8 @@ SWAP_PAIRS = [
     ['xstusd', 'eth'], ['xstusd', 'dai'], ['xstusd', 'usdc'],
     ['pswap', 'eth'], ['pswap', 'dai'], ['pswap', 'usdc'],
     ['noir', 'eth'], ['noir', 'dai'], ['noir', 'usdc'],
+    ['ceres', 'eth'], ['ceres', 'dai'], ['ceres', 'usdc'],
+    ['deo', 'eth'], ['deo', 'dai'], ['deo', 'usdc'],
 ]
 
 # Values on x axis in $
