@@ -14,6 +14,10 @@ Run this *Python* script to get a chart of current swap rates at [Polkaswap](htt
 
 1. Zoom in the most interesting amount
 
+### CLI arguments
+
+`--stable-xstusd` — treat the price of *XSTUSD* equal to **1$**
+
 ### Changing parameters
 
 You can easily change some parameters for your use-case. Edit the next variables in [main.py](src/main.py):

@@ -1,6 +1,7 @@
 import asyncio
 import matplotlib.pyplot as plt
 from labellines import labelLines
+import sys
 
 from api import Api
 
@@ -38,6 +39,10 @@ X_VALUES = [
 ]
 
 async def main():
+    stable_xstusd = False
+    if len(sys.argv) == 2 and sys.argv[1] == '--stable-xstusd':
+        stable_xstusd = True
+
     fig = plt.figure()
     fig.canvas.manager.set_window_title('Swap rate')
     ax = fig.subplots()
@@ -51,7 +56,10 @@ async def main():
         # Currencies in $
         asset_currencies = {}
         for asset, address in ASSET_ADDRESSES.items():
-            asset_currencies[asset] = api.get_usd_currency(address)
+            if asset == 'xstusd' and stable_xstusd:
+                asset_currencies[asset] = 1
+            else:
+                asset_currencies[asset] = api.get_usd_currency(address)
 
         print('Currencies:')
         for asset, currency in asset_currencies.items():
